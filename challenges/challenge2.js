@@ -4,15 +4,38 @@
  * Follow the steps below and answer the discusssion questions that follow.
  * 
  * 1. Read over the code that follows. What will be printed to the console when
- *    it runs? Run the code using `node challenge2.js` and verify that your
+ *    it runs? 
+ * 
+ * 'HELLO THERE, DUCKY'
+ * 'MAKE SCHOOL IS AWESOME!!!'
+ * 
+ * Run the code using `node challenge2.js` and verify that your
  *    expectation was correct.
  * 
+ * 'Hello there, Ducky'
+ * 'MAKE SCHOOL IS AWESOME!!!'
  * 
- * 2. What happens if greet() fails? Make it fail by changing 'name' to a number
- *    instead of a string. What happens? Does uppercaser() still run?
+ * 2. What happens if greet() fails? 
  * 
+ * 'Name must be a string!'
  * 
- * 3. What happens if greet() succeeds and uppercaser() fails? Modify your code
+ * Make it fail by changing 'name' to a number
+ *    instead of a string. What happens? 
+ * 
+ * Received an error! 
+ * Name must be a string!
+ * 
+ * Does uppercaser() still run?
+ * 
+ * I don't think so. It only runs if greet() is successful.
+ * 
+ * 3. What happens if greet() succeeds and uppercaser() fails? 
+ * 
+ * Hello there, Ducky 
+ * Received an error! 
+ * Argument to uppercaser must be string
+ * 
+ * Modify your code
  *    to achieve this result by changing the values of 'name' and 'my_str' and
  *    run the code again.
  * 
@@ -63,6 +86,18 @@ function uppercaser(str) {
     });
 }
 
+function spacer(str) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof str === 'string') { 
+        resolve('Hello there, ' + name);
+      } else {
+        reject('Name must be a string!');
+      }
+    }, 1000);
+  });
+}
+
 name = 'Ducky'
 my_str = 'Make School is Awesome!!!'
 
@@ -77,3 +112,5 @@ greet(name)
         console.log('Received an error!')
         console.log(err);
     });
+
+spacer()
