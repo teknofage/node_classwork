@@ -108,9 +108,12 @@ greet(name)
     })
     .then((uppercaserResult) => {
         console.log(uppercaserResult)
-    }).catch((err) => {
+        return spacer(my_str)
+    })
+    .then((spacerResult) => {
+      console.log(spacerResult)
+    })
+    .catch((err) => {
         console.log('Received an error!')
         console.log(err);
     });
-
-spacer()
