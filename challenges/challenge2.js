@@ -90,9 +90,9 @@ function spacer(str) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       if (typeof str === 'string') { 
-        resolve('Hello there, ' + name);
+        resolve(str.split('').join(' '));
       } else {
-        reject('Name must be a string!');
+        reject('Input str must be a string!');
       }
     }, 1000);
   });

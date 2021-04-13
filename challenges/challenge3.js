@@ -5,15 +5,26 @@
  * 
  * 1. Read over the `greetAndUppercase` function. This function uses
  *    Async/Await. How is this function different than a regular (non-async)
- *    function? What is its return type?
+ *    function? 
+ * 
+ * this function is different from a regular function in that it does not do anything 
+ * besides await and call the results of the functions greet() and uppercaser(), 
+ * and return the upperCasedGreeting
+ * 
+ * What is its return type?
+ * 
+ * Its return type is a(n uppercase) string.
  * 
  * 
  * 2. Uncomment block #1 and run the code using `node challenge3.js`. What is
  *    printed when we use `greetAndUppercase` like a regular function?
  * 
+ * Promise { <pending> }
  * 
  * 3. Uncomment block #2 and run the code again. What happens now?
  * 
+ * Promise { <pending> }
+ * HELLO THERE, DUCKY
  * 
  * 4. Write an asynchronous method 'spacer' that takes a string as input and 
  *    returns the input string with a space added between each character. You 
@@ -61,21 +72,34 @@ function uppercaser(str) {
     });
 }
 
+function spacer(str) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof str === 'string') { 
+        resolve(str.split('').join(' '));
+      } else {
+        reject('Input str must be a string!');
+      }
+    }, 1000);
+  });
+}
+
 async function greetAndUppercase(name) {
     greeting = await greet(name)
     uppercasedGreeting = await uppercaser(greeting)
-    return uppercasedGreeting
+    spacerUpperGreeting = await spacer(uppercasedGreeting)
+    return spacerUpperGreeting
 }
 
 /* Uncomment me! #1 */
-// result = greetAndUppercase('Ducky')
-// console.log(result)
+result = greetAndUppercase('Ducky')
+console.log(result)
 
 /* Uncomment me! #2 */
-// greetAndUppercase('Ducky')
-//     .then(function(result) {
-//         console.log(result)
-//     })
-//     .catch(function(err) {
-//         console.log(err)
-//     })
+greetAndUppercase('Ducky')
+.then(function(result) {
+    console.log(result)
+})
+.catch(function(err) {
+    console.log(err)
+})
